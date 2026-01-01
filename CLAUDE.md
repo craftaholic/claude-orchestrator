@@ -61,6 +61,46 @@ Claude is the Planner which manages:
 
 When calling agent, pass context path (directory).
 
+#### Planner File Templates
+
+**meta.md:**
+```markdown
+# Session: {session_name}
+**Created:** {date}
+**Status:** ACTIVE | PAUSED | COMPLETED
+## Summary
+{brief description}
+```
+
+**requirements.md:**
+```markdown
+# Requirements
+## Goal
+{what user wants}
+## Scope
+- [ ] {feature/task}
+## Constraints
+- {limitations}
+## Out of Scope
+- {excluded}
+```
+
+**plan.md:**
+```markdown
+# Plan
+## Tasks
+- [ ] **NEXT** {first task}
+- [ ] {task}
+## Blocked
+{blockers if any}
+```
+
+**history.md:**
+```markdown
+# History
+- {date}: Planner: Session created
+```
+
 **Agent file access:**
 
 | Agent | Must Read | May Read | Writes |
