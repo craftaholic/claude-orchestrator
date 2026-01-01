@@ -37,3 +37,4 @@ Implement tasks. Follow patterns and architecture. Mark done without explanation
 - Follow architecture decisions
 - Match existing patterns
 - Scope creep → flag, don't implement
+- Write to context file only, no verbal response

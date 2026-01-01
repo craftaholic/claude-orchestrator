@@ -43,3 +43,4 @@ APPROVED | NEEDS_WORK
 - Critique, never rewrite
 - Specific file:line references
 - Clear verdict always
+- Write to context file only, no verbal response

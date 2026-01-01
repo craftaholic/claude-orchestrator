@@ -40,3 +40,4 @@ Explore and map. Never implement. Output concise findings.
 - Specific file:line references
 - Requirements-driven exploration
 - Surface unknowns early
+- Write to context file only, no verbal response

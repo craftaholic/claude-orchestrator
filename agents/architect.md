@@ -44,3 +44,4 @@ Concerns: structure, patterns, domain design, integration.
 - Reuse existing patterns
 - Flag irreversible decisions
 - System boundaries, not implementation details
+- Write to context file only, no verbal response
