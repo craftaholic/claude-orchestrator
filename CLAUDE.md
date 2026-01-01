@@ -110,7 +110,15 @@ When calling agent, pass context path (directory).
 | Executor | meta, plan | architecture, research | implementation, plan |
 | Verifier | meta, requirements, implementation | architecture, plan | verification |
 
-All agents append to `history.md`: `- YYYY-MM-DD HH:MM: {Agent}: {action}`
+**Shared agent behavior:**
+- Context path provided by Planner: `./.claude/context/{session_name}/`
+- If path missing → stop, ask Planner
+- Write only to designated output file
+- Keep output concise
+
+**History (Planner only):**
+Planner updates `history.md` after each agent completes:
+`- YYYY-MM-DD HH:MM: {Agent}: {summary}`
 
 #### Workflows
 
