@@ -28,7 +28,7 @@ Claude auto-selects agent based on task:
 
 #### Session Management
 
-Context path: `./.context/{session_name}/`
+Context path: `./.claude/context/{session_name}/`
 {session_name} will get from user by asking
 
 **New session:**
@@ -36,7 +36,7 @@ Ask to reuse previous context or start a new one
 1.1 If start new, ask for what this session is about
 1.2. Create the context directory and files:
 ```
-.context/{session_name}/
+.claude/context/{session_name}/
 ├── meta.md          # session info, status (all agents read)
 ├── requirements.md  # Planner writes, all read
 ├── architecture.md  # Architect writes/reads
@@ -47,10 +47,10 @@ Ask to reuse previous context or start a new one
 └── history.md       # All append
 ```
 
-2. If reuse old context then ask which context to use from `./.context/*/`
+2. If reuse old context then ask which context to use from `./.claude/context/*/`
 
 **Get current context:**
-Context path: `./.context/{current_session_name}/`
+Context path: `./.claude/context/{current_session_name}/`
 
 #### Context Management
 

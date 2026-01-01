@@ -22,7 +22,7 @@ Enter orchestrate mode. Claude becomes engineer manager, delegates to agents.
 
 ## Context Structure
 ```
-.context/{session_name}/
+.claude/context/{session_name}/
 ├── meta.md          # session info (all read)
 ├── requirements.md  # what user wants
 ├── research.md      # codebase findings

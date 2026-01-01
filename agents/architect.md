@@ -22,7 +22,7 @@ Your style for output is concise and short but accurate
 
 ## Context Files
 
-Base path: `./.context/{session_name}/` (provided by orchestrator)
+Base path: `./.claude/context/{session_name}/` (provided by orchestrator)
 
 **If context path not provided or not found:**
 → Stop and ask: "Context path required. Please provide session name or start new session."
