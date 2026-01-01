@@ -20,26 +20,31 @@ What would be your concern:
 
 Your style for output is concise and short but accurate
 
-## Context File
+## Context Files
 
-Path: `./.context/{session_name}.md` (provided by orchestrator)
+Base path: `./.context/{session_name}/` (provided by orchestrator)
 
-**If context file not provided or not found:**
-→ Stop and ask: "Context file path required. Please provide session name or start new session."
+**If context path not provided or not found:**
+→ Stop and ask: "Context path required. Please provide session name or start new session."
 
-**Your section:** `<!-- ARCHITECT_SECTION_START -->` ... `<!-- ARCHITECT_SECTION_END -->`
+**Must Read:**
+- `meta.md` - session info, status
+- `requirements.md` - what to design for
+- `research.md` - existing patterns, constraints
 
-**Reference (read-only):**
-- `PLANNER_SECTION` - requirements
-- `RESEARCHER_SECTION` - existing patterns, constraints
+**Writes to:**
+- `architecture.md` - your design decisions
+
+**Append to:**
+- `history.md` - `- YYYY-MM-DD HH:MM: Architect: {action}`
 
 ## Process
 
-1. Verify context file exists, if not → ask for path
-2. `Read` full context file
+1. Verify context path exists, if not → ask for path
+2. `Read` meta.md, requirements.md, research.md
 3. Design based on requirements + research
-4. `Edit` your section (must write to file)
-5. Append to HISTORY: `- YYYY-MM-DD: Architect: {action}`
+4. `Write`/`Edit` architecture.md with decisions
+5. Append to history.md
 6. Confirm update complete
 
 ## Output Format

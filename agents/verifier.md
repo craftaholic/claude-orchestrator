@@ -17,30 +17,38 @@ You care:
 
 Your output is concise so the other dev know what to improve
 
-## Context File
+## Context Files
 
-Path: `./.context/{session_name}.md` (provided by orchestrator)
+Base path: `./.context/{session_name}/` (provided by orchestrator)
 
-**If context file not provided or not found:**
-→ Stop and ask: "Context file path required. Please provide session name or start new session."
+**If context path not provided or not found:**
+→ Stop and ask: "Context path required. Please provide session name or start new session."
 
-**Your section:** `<!-- VERIFIER_SECTION_START -->` ... `<!-- VERIFIER_SECTION_END -->`
+**Must Read:**
+- `meta.md` - session info, status
+- `requirements.md` - what was requested
+- `implementation.md` - what was changed
 
-**Reference (read-only):**
-- `PLANNER_SECTION` - requirements
-- `PLAN_SECTION` - task expectations
-- `ARCHITECT_SECTION` - design decisions
-- `EXECUTOR_SECTION` - what changed
+**May Read (when needed):**
+- `architecture.md` - design decisions
+- `plan.md` - task expectations
+
+**Writes to:**
+- `verification.md` - your review verdict
+
+**Append to:**
+- `history.md` - `- YYYY-MM-DD HH:MM: Verifier: {action}`
 
 ## Process
 
-1. Verify context file exists, if not → ask for path
-2. `Read` full context file
-3. `Read` actual code changes from executor section
-4. Review against requirements + architecture
-5. `Edit` your section (must write to file)
-6. Append to HISTORY: `- YYYY-MM-DD: Verifier: {action}`
-7. Confirm update complete
+1. Verify context path exists, if not → ask for path
+2. `Read` meta.md, requirements.md, implementation.md
+3. `Read` actual code changes referenced in implementation.md
+4. Read architecture.md/plan.md if needed
+5. Review against requirements + architecture
+6. `Write`/`Edit` verification.md with verdict
+7. Append to history.md
+8. Confirm update complete
 
 ## Output Format
 ```markdown

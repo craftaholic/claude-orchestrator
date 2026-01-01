@@ -19,45 +19,58 @@ Claude is now an engineer manager, focusing on delegate the work to agents
 Claude now have to maintain the Planner section of the context file (see below)
 Claude auto-selects agent based on task:
 
-| Agent | Model | Trigger | Section Marker |
-|-------|-------|---------|----------------|
-| Researcher | sonnet | codebase questions, exploration | `RESEARCHER_SECTION` |
-| Architect | sonnet | design, decisions, tradeoffs | `ARCHITECT_SECTION` |
-| Executor | opus | implementation, coding | `EXECUTOR_SECTION` |
-| Verifier | opus | review, quality check | `VERIFIER_SECTION` |
+| Agent | Model | Trigger | Output File |
+|-------|-------|---------|-------------|
+| Researcher | sonnet | codebase questions, exploration | `research.md` |
+| Architect | sonnet | design, decisions, tradeoffs | `architecture.md` |
+| Executor | opus | implementation, coding | `implementation.md` |
+| Verifier | opus | review, quality check | `verification.md` |
 
 #### Session Management
 
-Context file path: `./.context/{session_name}.md`
+Context path: `./.context/{session_name}/`
 {session_name} will get from user by asking
 
 **New session:**
 Ask to reuse previous context or start a new one
 1.1 If start new, ask for what this session is about
-1.2. Create the new context file for this session using the write tool to create the file
-Example
+1.2. Create the context directory and files:
 ```
-User: I want to develop a new fuction for adding 3d model into the frontpage
--> The context file is something like: ./.context/add-3d-model-to-frontpage
+.context/{session_name}/
+├── meta.md          # session info, status (all agents read)
+├── requirements.md  # Planner writes, all read
+├── architecture.md  # Architect writes/reads
+├── research.md      # Researcher writes/reads
+├── plan.md          # Planner writes, Executor reads
+├── implementation.md # Executor writes
+├── verification.md  # Verifier writes
+└── history.md       # All append
 ```
 
-2. If reuse old context then ask which old context to use from ***./.context/<context-name>***
+2. If reuse old context then ask which context to use from `./.context/*/`
 
 **Get current context:**
-1. Context file: `./.context/{current_session_name}.md`
+Context path: `./.context/{current_session_name}/`
 
 #### Context Management
 
-Claude is the Planner which manage and maintain (`<!-- PLANNER_SECTION_START/END -->`)
+Claude is the Planner which manages:
+- `meta.md` - session status
+- `requirements.md` - what user wants
+- `plan.md` - tasks to execute
 
-When calling agent, pass context file path.
+When calling agent, pass context path (directory).
 
-Agent must:
-1. Read only relevant content in context file
-2. Do task
-3. Update ONLY its section (`<!-- {AGENT}_SECTION_START/END -->`)
-4. Append to HISTORY: `- [YYYY-MM-DD HH:MM]: {Agent}: {action}`
-5. Write back to context file
+**Agent file access:**
+
+| Agent | Must Read | May Read | Writes |
+|-------|-----------|----------|--------|
+| Researcher | meta, requirements | - | research |
+| Architect | meta, requirements, research | - | architecture |
+| Executor | meta, plan | architecture, research | implementation, plan |
+| Verifier | meta, requirements, implementation | architecture, plan | verification |
+
+All agents append to `history.md`: `- YYYY-MM-DD HH:MM: {Agent}: {action}`
 
 #### Workflows
 
@@ -99,7 +112,8 @@ Agent must:
 - Searching -> Researcher
 
 #### Agent Behavior
-- Always write to context file but keep it concise and short
-- Read context file before acting
-- Update only agent section
+- Read only required files for the task
+- Write only to designated output file
+- Keep output concise and short
+- Append to history.md after each action
 - Document rationale, not just decisions

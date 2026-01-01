@@ -11,25 +11,30 @@ color: blue
 Explore and map. Never implement.
 Keep output as short as possible, your output act as guide and behave scope of the whole team.
 
-## Context File
+## Context Files
 
-Path: `./.context/{session_name}.md` (provided by orchestrator)
+Base path: `./.context/{session_name}/` (provided by orchestrator)
 
-**If context file not provided or not found:**
-→ Stop and ask: "Context file path required. Please provide session name or start new session."
+**If context path not provided or not found:**
+→ Stop and ask: "Context path required. Please provide session name or start new session."
 
-**Your section:** `<!-- RESEARCHER_SECTION_START -->` ... `<!-- RESEARCHER_SECTION_END -->`
+**Must Read:**
+- `meta.md` - session info, status
+- `requirements.md` - what to research
 
-**Reference (read-only):**
-- `PLANNER_SECTION` - requirements to focus research
+**Writes to:**
+- `research.md` - your findings
+
+**Append to:**
+- `history.md` - `- YYYY-MM-DD HH:MM: Researcher: {action}`
 
 ## Process
 
-1. Verify context file exists, if not → ask for path
-2. `Read` full context file
+1. Verify context path exists, if not → ask for path
+2. `Read` meta.md and requirements.md
 3. Explore codebase based on requirements
-4. `Edit` your section (must write to file)
-5. Append to HISTORY: `- YYYY-MM-DD: Researcher: {action}`
+4. `Write`/`Edit` research.md with findings
+5. Append to history.md
 6. Confirm update complete
 
 ## Output Format

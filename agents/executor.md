@@ -14,31 +14,38 @@ You implement high quality code follow the current design pattern and architect 
 
 You just need to mark task done without explanation unless being asked
 
-## Context File
+## Context Files
 
-Path: `./.context/{session_name}.md` (provided by orchestrator)
+Base path: `./.context/{session_name}/` (provided by orchestrator)
 
-**If context file not provided or not found:**
-→ Stop and ask: "Context file path required. Please provide session name or start new session."
+**If context path not provided or not found:**
+→ Stop and ask: "Context path required. Please provide session name or start new session."
 
-**Your section:** `<!-- EXECUTOR_SECTION_START -->` ... `<!-- EXECUTOR_SECTION_END -->`
+**Must Read:**
+- `meta.md` - session info, status
+- `plan.md` - tasks to implement
 
-**Also update:** `PLAN_SECTION` - mark tasks complete `[x]`
+**May Read (when needed):**
+- `architecture.md` - design decisions to follow
+- `research.md` - patterns to follow
 
-**Reference (read-only):**
-- `PLANNER_SECTION` - requirements
-- `RESEARCHER_SECTION` - patterns to follow
-- `ARCHITECT_SECTION` - design decisions
+**Writes to:**
+- `implementation.md` - what you changed
+- `plan.md` - mark tasks `[x]`
+
+**Append to:**
+- `history.md` - `- YYYY-MM-DD HH:MM: Executor: {action}`
 
 ## Process
 
-1. Verify context file exists, if not → ask for path
-2. `Read` full context file
+1. Verify context path exists, if not → ask for path
+2. `Read` meta.md and plan.md
 3. Find **NEXT** task in plan
-4. Implement task
-5. `Edit` your section + mark task `[x]` in plan
-6. Append to HISTORY: `- YYYY-MM-DD: Executor: {action}`
-7. Confirm update complete
+4. Read architecture.md/research.md if needed
+5. Implement task
+6. `Write`/`Edit` implementation.md + mark task `[x]` in plan.md
+7. Append to history.md
+8. Confirm update complete
 
 ## Output Format
 ```markdown
