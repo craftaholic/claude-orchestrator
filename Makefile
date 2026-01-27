@@ -1,5 +1,5 @@
 CLAUDE_TARGET_DIR := $(HOME)/.claude
-SOURCES := CLAUDE.md agents commands skills
+SOURCES := CLAUDE.md src/content
 DIST_CLAUDE := dist/claude-code
 
 .PHONY: install generate help install-fresh install-merge backup uninstall
